@@ -3,6 +3,7 @@ package com.kaihagberg.dcfvaluator
 import org.springframework.web.client.RestTemplate
 import com.kaihagberg.dcfvaluator.fundamentaldata.balancesheet.BalanceSheet
 import com.kaihagberg.dcfvaluator.fundamentaldata.cashflow.CashFlow
+import com.kaihagberg.dcfvaluator.fundamentaldata.companyoverview.CompanyOverview
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import org.springframework.web.util.UriComponentsBuilder
@@ -22,6 +23,12 @@ class AlphaVantageClient {
     constructor() {
         restTemplate = RestTemplate()
     }
+
+    val companyOverview: CompanyOverview?
+        get() {
+            function = "OVERVIEW"
+            return restTemplate!!.getForObject(buildURI(), CompanyOverview::class.java)
+        }
 
     val balanceSheet: BalanceSheet?
         get() {
@@ -43,6 +50,7 @@ class AlphaVantageClient {
             .queryParam("symbol", symbol)
             .queryParam("apikey", apiKey)
             .build()
+        println(uriComponents.toUriString())
         return uriComponents.toUri()
     }
 

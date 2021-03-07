@@ -7,10 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import com.kaihagberg.dcfvaluator.fundamentaldata.balancesheet.BalanceSheet
 import com.kaihagberg.dcfvaluator.fundamentaldata.cashflow.CashFlow
+import com.kaihagberg.dcfvaluator.fundamentaldata.companyoverview.CompanyOverview
 
 @RestController
 @RequestMapping("/valuation")
 class DcfController (private val service: FundamentalDataService) {
+
+    @GetMapping(value = ["/overview/{symbol}"])
+    fun getCompanyOverview(@PathVariable("symbol") symbol: String?): CompanyOverview? {
+        return service.getCompanyOverview(symbol)
+    }
 
     @GetMapping(value = ["/balance_sheet/{symbol}"])
     fun getBalanceSheet(@PathVariable("symbol") symbol: String?): BalanceSheet? {
