@@ -1,4 +1,4 @@
-package com.kaihagberg.dcfvaluator.fundamentaldata.companyoverview
+package com.kaihagberg.dcfvaluator.alphavantage.companyoverview
 
 import com.fasterxml.jackson.annotation.JsonGetter
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
@@ -7,7 +7,6 @@ import java.io.Serializable
 
 @JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy::class)
 class CompanyOverview : Serializable {
-
     var symbol: String? = null
     var assetType: String? = null
     var name: String? = null

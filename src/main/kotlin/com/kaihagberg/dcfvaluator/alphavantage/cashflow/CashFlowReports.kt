@@ -1,4 +1,4 @@
-package com.kaihagberg.dcfvaluator.fundamentaldata.cashflow
+package com.kaihagberg.dcfvaluator.alphavantage.cashflow
 
 import java.io.Serializable
 

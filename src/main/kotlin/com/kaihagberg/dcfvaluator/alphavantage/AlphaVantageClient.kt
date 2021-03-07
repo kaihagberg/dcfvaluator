@@ -1,9 +1,12 @@
-package com.kaihagberg.dcfvaluator
+package com.kaihagberg.dcfvaluator.alphavantage
 
 import org.springframework.web.client.RestTemplate
-import com.kaihagberg.dcfvaluator.fundamentaldata.balancesheet.BalanceSheet
-import com.kaihagberg.dcfvaluator.fundamentaldata.cashflow.CashFlow
-import com.kaihagberg.dcfvaluator.fundamentaldata.companyoverview.CompanyOverview
+import com.kaihagberg.dcfvaluator.alphavantage.balancesheet.BalanceSheet
+import com.kaihagberg.dcfvaluator.alphavantage.cashflow.CashFlow
+import com.kaihagberg.dcfvaluator.alphavantage.companyoverview.CompanyOverview
+import com.kaihagberg.dcfvaluator.alphavantage.earnings.Earnings
+import com.kaihagberg.dcfvaluator.alphavantage.globalquote.Quote
+import com.kaihagberg.dcfvaluator.alphavantage.incomestatement.IncomeStatement
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import org.springframework.web.util.UriComponentsBuilder
@@ -24,10 +27,28 @@ class AlphaVantageClient {
         restTemplate = RestTemplate()
     }
 
+    val quote: Quote?
+        get() {
+            function = "GLOBAL_QUOTE"
+            return restTemplate!!.getForObject(buildURI(), Quote::class.java)
+        }
+
     val companyOverview: CompanyOverview?
         get() {
             function = "OVERVIEW"
             return restTemplate!!.getForObject(buildURI(), CompanyOverview::class.java)
+        }
+
+    val earnings : Earnings?
+        get() {
+            function = "EARNINGS"
+            return restTemplate!!.getForObject(buildURI(), Earnings::class.java)
+        }
+
+    val incomeStatement : IncomeStatement?
+        get() {
+            function = "INCOME_STATEMENT"
+            return restTemplate!!.getForObject(buildURI(), IncomeStatement::class.java)
         }
 
     val balanceSheet: BalanceSheet?

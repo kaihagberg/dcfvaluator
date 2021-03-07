@@ -1,4 +1,4 @@
-package com.kaihagberg.dcfvaluator.fundamentaldata.balancesheet
+package com.kaihagberg.dcfvaluator.alphavantage.balancesheet
 
 import java.io.Serializable
 
